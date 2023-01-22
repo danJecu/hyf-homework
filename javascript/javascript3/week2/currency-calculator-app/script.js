@@ -7,7 +7,7 @@ async function getCurrency(currency = 'DKK') {
         `https://open.er-api.com/v6/latest/${currency}`
     );
     const data = await reponse.json();
-
+    console.log(data);
     Object.keys(data.rates).forEach(curr => {
         const option1 = document.createElement('option');
         option1.value = curr;
@@ -18,8 +18,11 @@ async function getCurrency(currency = 'DKK') {
         option2.innerText = curr;
         toCurrency.appendChild(option2);
     });
-    fromCurrency.value = 'EUR';
-    toCurrency.value = 'DKK';
+
+    toCurrency.value = 'EUR';
 }
 
-getCurrency('EUR');
+fromCurrency.addEventListener('change', async () => {
+    getCurrency(fromCurrency.value);
+});
+getCurrency();
