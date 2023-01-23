@@ -1,28 +1,40 @@
-const container = document.getElementById('container');
-const fromCurrency = document.getElementById('from-currency');
-const toCurrency = document.getElementById('to-currency');
+const amount = document.querySelector('#amount');
+const fromCurrency = document.querySelector('#from-currency');
+const toCurrency = document.querySelector('#to-currency');
+const button = document.querySelector('#convert');
 
-async function getCurrency(currency = 'DKK') {
-    const reponse = await fetch(
-        `https://open.er-api.com/v6/latest/${currency}`
+loadCurrencies();
+
+// Convert currency when button is clicked
+function convertCurrency() {
+  console.log(`${amount}-${fromCurrency}-${toCurrency}`);
+}
+
+async function loadCurrencies(currency = 'DKK') {
+  try {
+    const response = await fetch(
+      `https://open.er-api.com/v6/latest/${currency}`
     );
-    const data = await reponse.json();
-    console.log(data);
-    Object.keys(data.rates).forEach(curr => {
-        const option1 = document.createElement('option');
-        option1.value = curr;
-        option1.innerText = curr;
-        fromCurrency.appendChild(option1);
-        const option2 = document.createElement('option');
-        option2.value = curr;
-        option2.innerText = curr;
-        toCurrency.appendChild(option2);
+    const data = await response.json();
+    const currencies = Object.keys(data.rates);
+    // Populate options for select elements
+    currencies.forEach((currency) => {
+      const option = document.createElement('option');
+      option.value = data.rates[currency];
+      option.text = currency;
+      fromCurrency.appendChild(option);
+      const option2 = document.createElement('option');
+      option2.value = currency;
+      option2.text = currency;
+      toCurrency.appendChild(option2);
     });
 
     toCurrency.value = 'EUR';
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-fromCurrency.addEventListener('change', async () => {
-    getCurrency(fromCurrency.value);
+fromCurrency.addEventListener('change', () => {
+  loadCurrencies();
 });
-getCurrency();
