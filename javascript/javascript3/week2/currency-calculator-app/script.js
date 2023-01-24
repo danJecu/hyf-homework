@@ -25,7 +25,7 @@ async function convertCurrency() {
   return (amount.value * exchangeRate).toFixed(2);
 }
 
-async function loadCurrencies(currency = 'DKK') {
+async function loadCurrencies(currency = 'EUR') {
   try {
     fromCurrency.innerHTML = '';
     toCurrency.innerHTML = '';
@@ -46,7 +46,7 @@ async function loadCurrencies(currency = 'DKK') {
       toCurrency.appendChild(option2);
     });
 
-    toCurrency.value = 'EUR';
+    toCurrency.value = 'DKK';
   } catch (err) {
     console.log(err);
   }
