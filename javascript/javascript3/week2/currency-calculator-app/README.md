@@ -23,3 +23,9 @@ The calculator uses live exchange rates, ensuring that users always have the mos
 :white_check_mark: User can choose a currency to convert to(Default should be DKK).
 
 :white_check_mark: Whenever amount, currency from or currency to changes we show what the amount translates to in the to currency.
+
+#
+
+### Examples
+
+![image](./screenshots/example.png)
