@@ -3,7 +3,7 @@ const websiteInput = document.getElementById('website');
 const btnSubmit = document.getElementById('btn-submit');
 const displayContainer = document.getElementById('display-data');
 
-async function fetchScreenshot(website) {
+/* async function fetchScreenshot(website) {
   try {
     const response = await fetch(
       `https://website-screenshot6.p.rapidapi.com/screenshot?url=${website}%2Fmarketplace&width=1920&height=1080&fullscreen=true`,
@@ -11,21 +11,20 @@ async function fetchScreenshot(website) {
     );
     const jsonResponse = await response.json();
     const payload = jsonResponse;
-    if (payload.screenshotUrl) {
-      const postResponse = await fetch(`${BASE_URL}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          payload,
-        }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log('Data posted to API');
-    } else {
-      alert('The URL is not valid!');
-    }
+    if (payload.screenshotUrl) { */
+
+async function postLink(link) {
+  try {
+    const postResponse = await fetch(`${BASE_URL}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        link,
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   } catch (error) {
     console.log('Error posting data to API:', error);
   }
@@ -38,9 +37,8 @@ async function handleDeleteItem(id) {
       throw new Error(response.statusText);
     }
     handleloadData();
-    console.log('Item deleted!');
   } catch (err) {
-    console.log(err);
+    console.log(err.statusText);
   }
 }
 
@@ -50,12 +48,13 @@ async function handleloadData() {
     const data = await response.json();
 
     if (data.length) {
+      displayContainer.innerHTML = '';
       data.forEach((d) => {
         const div = document.createElement('div');
 
         const linkToPhoto = document.createElement('a');
-        linkToPhoto.innerText = 'Link';
-        linkToPhoto.href = d.payload.screenshotUrl;
+        linkToPhoto.innerText = d.link;
+        linkToPhoto.href = d.link;
 
         const deleteBtn = document.createElement('button');
         deleteBtn.addEventListener('click', async () => {
@@ -71,7 +70,7 @@ async function handleloadData() {
       displayContainer.innerHTML = '<h1>No data to display</h1>';
     }
   } catch (err) {
-    console.log(err);
+    console.log(err.statusText);
   }
 }
 
@@ -81,7 +80,7 @@ btnSubmit.addEventListener('click', async (e) => {
   if (!website.length) {
     alert('Please enter a URL!');
   } else {
-    fetchScreenshot(website);
+    postLink(website);
     websiteInput.value = '';
   }
   handleloadData();
