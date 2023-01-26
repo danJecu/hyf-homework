@@ -3,6 +3,7 @@ const websiteInput = document.getElementById('website');
 const btnSubmit = document.getElementById('btn-submit');
 const displayContainer = document.getElementById('display-data');
 
+// Replaced the Website API with a simple POST of the link, due to reaching the max number of requests
 /* async function fetchScreenshot(website) {
   try {
     const response = await fetch(
@@ -11,7 +12,20 @@ const displayContainer = document.getElementById('display-data');
     );
     const jsonResponse = await response.json();
     const payload = jsonResponse;
-    if (payload.screenshotUrl) { */
+    const postResponse = await fetch(`${BASE_URL}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        payload,
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    console.log('Error posting data to API:', error);
+  }
+    { */
 
 async function postLink(link) {
   try {
