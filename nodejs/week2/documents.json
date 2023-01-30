@@ -1,13 +1,13 @@
 [
     {
-        "id": "1",
-        "name": "Puma Nitro 2",
-        "description": "daily trainers"
+        "id": 1,
+        "name": "Used Apple Airpods",
+        "price": "50",
+        "description": "Battery life is not great"
     },
     {
-        "id": "2",
-        "name": "Saucony Speed 3",
-        "price": "1000",
-        "description": "tempo trainers"
+        "id": 2,
+        "type": "doc",
+        "value": "hello world"
     }
 ]

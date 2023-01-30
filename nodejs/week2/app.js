@@ -18,7 +18,8 @@ app.get('/search', (req, res) => {
                 return item;
             }
         });
-        res.json(matchingQuerry);
+
+        res.status(200).json(matchingQuerry);
     } else {
         res.json(data);
     }
@@ -27,12 +28,12 @@ app.get('/search', (req, res) => {
 app.get('/documents/:id', (req, res) => {
     const id = req.params.id;
 
-    const matchingId = data.filter(item => item.id === id);
+    const matchingId = data.filter(item => item.id === parseInt(id));
 
     if (!matchingId.length) {
         res.status(404).json('error: Not Found');
     } else {
-        res.json(matchingId);
+        res.send(matchingId);
     }
 });
 
