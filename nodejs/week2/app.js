@@ -51,7 +51,7 @@ app.post('/search', (req, res) => {
         });
     } else if (q) {
         const matchingQuerry = data.filter(item => {
-            if (new RegExp(queryValue, 'i').test(Object.values(item))) {
+            if (new RegExp(q, 'i').test(Object.values(item))) {
                 return item;
             }
         });
