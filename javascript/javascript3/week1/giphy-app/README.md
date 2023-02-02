@@ -8,7 +8,6 @@ It allows users to quickly and easily search for GIFs on the web by specifying a
 
 The app also gives users the ability to control the number of GIFs displayed on the page, making it easy to find the perfect GIF for any occasion.
 
-You can try the APP [HERE](https://danjecu.github.io/giphy-app/).
 
 #
 
