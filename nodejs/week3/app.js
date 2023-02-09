@@ -30,7 +30,7 @@ contactsAPIRouter.get('/', async (req, res) => {
 
         if (sort) {
             // Sanitize the sort query parameter
-            sort = sort.replace(/[^a-zA-Z0-9_.]/g, '');
+            sort = sort.replace(/[^a-zA-Z0-9_ ]/g, '');
 
             query = knex.select().from('contacts').orderByRaw(sort);
         }
