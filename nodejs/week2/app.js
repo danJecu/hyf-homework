@@ -13,13 +13,13 @@ app.get('/', (req, res) => {
 app.get('/search', (req, res) => {
     const queryValue = req.query.q;
     if (queryValue) {
-        const matchingQuerry = data.filter(item => {
+        const documentMatchingQuerry = data.filter(item => {
             if (new RegExp(queryValue, 'i').test(Object.values(item))) {
                 return item;
             }
         });
 
-        res.status(200).json(matchingQuerry);
+        res.status(200).json(documentMatchingQuerry);
     } else {
         res.json(data);
     }
@@ -28,12 +28,12 @@ app.get('/search', (req, res) => {
 app.get('/documents/:id', (req, res) => {
     const id = req.params.id;
 
-    const matchingId = data.filter(item => item.id === parseInt(id));
+    const documentWithId = data.filter(item => item.id === parseInt(id));
 
-    if (!matchingId.length) {
+    if (!documentWithId.length) {
         res.status(404).json('error: Not Found');
     } else {
-        res.send(matchingId);
+        res.send(documentWithId);
     }
 });
 
