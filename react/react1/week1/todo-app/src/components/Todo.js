@@ -1,7 +1,7 @@
-export default function Todo({ title, date }) {
+export default function Todo({ todo }) {
     return (
         <li className='todo-item'>
-            {title} - {date}
+            {todo.title} - {todo.date}
         </li>
     );
 }
