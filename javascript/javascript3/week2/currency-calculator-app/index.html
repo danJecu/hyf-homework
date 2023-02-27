@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Currency Calculator</title>
+    </head>
+    <body>
+        <div
+            id="container"
+            class="h-100 d-flex flex-column align-items-center justify-content-center"
+        >
+            <h1 class="fw-bold">Currency Converter</h1>
+            <form
+                class="d-flex flex-column align-items-center justify-content-center form-control w-50 p-3"
+            >
+                <label for="amount" class="lead">Amount</label>
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    required
+                    class="form-control text-center"
+                />
+                <br />
+                <label for="from-currency" class="lead">From Currency</label>
+                <select
+                    id="from-currency"
+                    name="from-currency"
+                    required
+                    class="custom-select"
+                >
+                    <!-- options will be added here dynamically -->
+                </select>
+                <br />
+                <label for="to-currency" class="lead">To Currency:</label>
+                <select
+                    id="to-currency"
+                    name="to-currency"
+                    required
+                    class="custom-select"
+                >
+                    <!-- options will be added here dynamically -->
+                </select>
+                <br />
+                <button type="button" id="convert" class="btn btn-primary">
+                    Convert
+                </button>
+            </form>
+            <p
+                id="result"
+                class="bg-dark text-white text-center border rounded h5 font-weight-bold w-50 mt-3 py-3"
+            ></p>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

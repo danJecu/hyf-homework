@@ -28,4 +28,4 @@ The calculator uses live exchange rates, ensuring that users always have the mos
 
 ### Examples
 
-![image](./currency-calculator-app/screenshots/example.png)
+![image](./screenshots/example.png)
