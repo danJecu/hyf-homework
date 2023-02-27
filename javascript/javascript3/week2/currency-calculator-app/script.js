@@ -4,8 +4,6 @@ const toCurrency = document.querySelector('#to-currency');
 const button = document.querySelector('#convert');
 const result = document.querySelector('#result');
 
-loadCurrencies();
-
 function handleSelectedText(selection) {
     if (selection.selectedIndex === -1) {
         return null;
@@ -29,34 +27,43 @@ async function convertCurrency() {
 
 // Displaying the currency selections
 async function loadCurrencies(currency = 'EUR') {
+    let response, data;
     try {
-        fromCurrency.innerHTML = '';
-        toCurrency.innerHTML = '';
-        const response = await fetch(
-            `https://open.er-api.com/v6/latest/${currency}`
-        );
-        const data = await response.json();
-        const currencies = Object.keys(data.rates);
-        // Populate options for select elements
-        currencies.forEach(currency => {
-            const option = document.createElement('option');
-
-            option.value = data.rates[currency];
-            option.text = currency;
-            fromCurrency.appendChild(option);
-            const option2 = document.createElement('option');
-            option2.value = currency;
-            option2.text = currency;
-            toCurrency.appendChild(option2);
-        });
-
-        toCurrency.value = 'DKK';
+        response = await fetch(`https://open.er-api.com/v6/latest/${currency}`);
+        data = await response.json();
     } catch (err) {
         console.log(err);
+        return;
     }
+
+    // Handle errors with data
+    if (!data || !data.rates) {
+        console.log('Invalid data returned from API');
+        return;
+    }
+
+    // Populate options for select elements
+    fromCurrency.innerHTML = '';
+    toCurrency.innerHTML = '';
+    const currencies = Object.keys(data.rates);
+    currencies.forEach(currency => {
+        const option = document.createElement('option');
+        option.value = data.rates[currency];
+        option.text = currency;
+        fromCurrency.appendChild(option);
+
+        const option2 = document.createElement('option');
+        option2.value = currency;
+        option2.text = currency;
+        toCurrency.appendChild(option2);
+    });
+
+    toCurrency.value = 'DKK';
 }
 
-fromCurrency.addEventListener('change', async () => {
+loadCurrencies();
+
+fromCurrency.addEventListener('change', () => {
     const currency = handleSelectedText(fromCurrency);
     loadCurrencies(currency);
 });
