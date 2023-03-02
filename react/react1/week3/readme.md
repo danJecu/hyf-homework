@@ -12,7 +12,7 @@ A project designed as part of the curriculum for HackYourFuture Denmark.
 
 ✅ Delete existing todo items.
 
-✅ PropType validation for at least one component.
+✅ PropType validation for one component.
 
 ✅ Custom border component to wrap any component with a black border ( I used a box shadow instead of the black border).
 
