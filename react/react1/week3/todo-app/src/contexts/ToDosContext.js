@@ -4,7 +4,6 @@ export const ToDosContext = createContext();
 
 const initialState = {
   todos: [],
-  editingToDo: null,
 };
 
 const toDosReducer = (state, action) => {
