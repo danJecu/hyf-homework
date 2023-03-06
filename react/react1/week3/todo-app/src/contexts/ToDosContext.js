@@ -36,7 +36,7 @@ export const ToDosProvider = ({ children }) => {
           dispatch({ type: 'GET_TODOS', payload: data });
         }
       } catch (error) {
-        console.log(error);
+        throw new Error(error);
       }
     }
 
