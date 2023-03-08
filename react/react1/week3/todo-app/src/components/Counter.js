@@ -7,7 +7,7 @@ export default function Counter() {
     setTimeout(() => {
       setSeconds(seconds + 1);
     }, 1000);
-  });
+  },[seconds);
 
   return <h5>You have spent {seconds} seconds on this website.</h5>;
 }
