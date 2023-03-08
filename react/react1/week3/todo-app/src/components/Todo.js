@@ -63,7 +63,7 @@ export default function Todo({ todo }) {
             Save
           </button>
         ) : (
-          <button type="button" onClick={() => setUpdate(true)}>
+          <button type="button" onClick={() => setUpdate(true)} disabled={checked}>
             Edit
           </button>
         )}
