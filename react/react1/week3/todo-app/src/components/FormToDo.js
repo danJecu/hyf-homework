@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { ToDosContext } from '../contexts/ToDosContext';
 
 export default function FormToDo() {
-  const { handleAddUpdate, todos } = useContext(ToDosContext);
+  const { handleAdd, todos } = useContext(ToDosContext);
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
 
@@ -15,7 +15,7 @@ export default function FormToDo() {
       id: todos.length ? todos[todos.length - 1].id + 1 : 1,
     };
 
-    handleAddUpdate(newToDo);
+    handleAdd(newToDo);
 
     setDescription('');
     setDeadline('');

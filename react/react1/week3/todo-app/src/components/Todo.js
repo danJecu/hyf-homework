@@ -5,20 +5,17 @@ import { ToDosContext } from '../contexts/ToDosContext';
 
 export default function Todo({ todo }) {
   const [checked, setChecked] = useState(false);
-  const [update, setUpdate] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [descriptionValue, setDescriptionValue] = useState(todo.description);
 
-  const { handleDelete, handleAddUpdate } = useContext(ToDosContext);
+  const { handleUpdate, handleDelete } = useContext(ToDosContext);
 
-  const handleUpdate = () => {
+  const handleTodo = () => {
     if (descriptionValue) {
-      handleAddUpdate({
-        ...todo,
-        description: descriptionValue,
-      });
+      handleUpdate({ ...todo, description: descriptionValue });
     }
     setDescriptionValue(todo.description);
-    setUpdate(false);
+    setIsEditing(false);
   };
 
   return (
@@ -29,7 +26,7 @@ export default function Todo({ todo }) {
           textDecoration: checked ? 'line-through' : 'none',
         }}
       >
-        {update ? (
+        {isEditing ? (
           <>
             <input
               type="text"
@@ -37,7 +34,7 @@ export default function Todo({ todo }) {
               onChange={(e) => setDescriptionValue(e.target.value)}
               required
             />
-            <button type="button" onClick={() => setUpdate(false)}>
+            <button type="button" onClick={() => setIsEditing(false)}>
               Cancel
             </button>
           </>
@@ -54,16 +51,20 @@ export default function Todo({ todo }) {
       </div>
 
       <div className="btn-container">
-        {update ? (
+        {isEditing ? (
           <button
             type="button"
-            onClick={handleUpdate}
-            style={{ backgroundColor: update ? 'green' : 'red' }}
+            onClick={handleTodo}
+            style={{ backgroundColor: isEditing ? 'green' : 'red' }}
           >
             Save
           </button>
         ) : (
-          <button type="button" onClick={() => setUpdate(true)} disabled={checked}>
+          <button
+            type="button"
+            onClick={() => setIsEditing(true)}
+            disabled={checked}
+          >
             Edit
           </button>
         )}
