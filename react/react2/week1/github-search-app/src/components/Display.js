@@ -64,7 +64,7 @@ export default function Display() {
       {githubUsers.length && searchQuery ? (
         <ul className="flex flex-wrap justify-center gap-10">
           {githubUsers ? (
-            githubUsers.map((d) => <User key={d.id} user={d} />)
+            githubUsers.map((user) => <User key={user.id} user={user} />)
           ) : (
             <div>"No results found..."</div>
           )}
