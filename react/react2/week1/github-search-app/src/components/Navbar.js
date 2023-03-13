@@ -1,18 +1,21 @@
-import { useState, useContext } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import { SearchContext, actions } from '../contexts/SearchContext';
 
 export default function Navbar() {
   const [searchValue, setSearchValue] = useState('');
   const { dispatch } = useContext(SearchContext);
 
-  const handleSearchQuery = (e) => {
-    const { value } = e.target;
-    setSearchValue(value);
+  const handleSearchQuery = useCallback(
+    (e) => {
+      const { value } = e.target;
+      setSearchValue(value);
 
-    if (dispatch) {
-      dispatch({ type: actions.SET_SEARCH_QUERY, payload: value });
-    }
-  };
+      if (dispatch) {
+        dispatch({ type: actions.SET_SEARCH_QUERY, payload: value });
+      }
+    },
+    [dispatch]
+  );
 
   return (
     <header className="sticky top-0 rounded bg-white">

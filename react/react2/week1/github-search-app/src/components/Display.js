@@ -35,7 +35,6 @@ export default function Display() {
       if (res.status === 200) {
         const json = await res.json();
         dispatch({ type: actions.GET_SEARCH, payload: json.items });
-        // Github API is throwing a 403 error when the search input is changing
       } else {
         dispatch({
           type: actions.SET_ERROR,
@@ -50,7 +49,7 @@ export default function Display() {
     };
   }, [dispatch, searchQuery]);
 
-  if (error.length) {
+  if (error.length && !githubUsers) {
     return <div className="mt-24 text-center text-3xl font-bold">{error}</div>;
   }
 
