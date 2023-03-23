@@ -3,6 +3,20 @@ const websiteInput = document.getElementById('website');
 const btnSubmit = document.getElementById('btn-submit');
 const displayContainer = document.getElementById('display-data');
 
+btnSubmit.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const website = websiteInput.value;
+  if (!website.length) {
+    alert('Please enter a URL!');
+  } else {
+    postLink(website);
+    websiteInput.value = '';
+  }
+  handleloadData();
+});
+
+handleloadData();
+
 // Replaced the Website API with a simple POST of the link, due to reaching the max number of requests
 /* async function fetchScreenshot(website) {
   try {
@@ -88,16 +102,4 @@ async function handleloadData() {
   }
 }
 
-btnSubmit.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const website = websiteInput.value;
-  if (!website.length) {
-    alert('Please enter a URL!');
-  } else {
-    postLink(website);
-    websiteInput.value = '';
-  }
-  handleloadData();
-});
 
-handleloadData();
