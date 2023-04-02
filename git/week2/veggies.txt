@@ -1,5 +1,7 @@
 garlic
 onion
-cabbage
+celery
 ginger
 turmeric
+spinach
+kale
