@@ -1,7 +1,13 @@
 garlic
 onion
+<<<<<<< HEAD
 celery
 ginger
 turmeric
 spinach
 kale
+=======
+eggplant
+ginger
+turmeric
+>>>>>>> 6e991a373d954af01c0916eda48a85bec00a865c
