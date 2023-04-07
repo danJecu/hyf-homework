@@ -1,5 +1,11 @@
 garlic
 onion
+celery
+ginger
+turmeric
+spinach
+kale
 eggplant
 ginger
 turmeric
+
